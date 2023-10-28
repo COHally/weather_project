@@ -17,25 +17,45 @@ def format_temperature(temp):
 
 
 def convert_date(iso_string):
-    """Converts and ISO formatted date into a human readable format.
+    # """Converts and ISO formatted date into a human readable format.
 
-    Args:
-        iso_string: An ISO date string..
-    Returns:
-        A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
-    """
+    # Args:
+    #     iso_string: An ISO date string..
+    # Returns:
+    #     A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
+    # """
+    try:
+        # Parse the ISO date string into a datetime object
+        date_obj = datetime.fromisoformat(iso_string)
+
+        # Format the datetime object into the desired human-readable format
+        formatted_date = date_obj.strftime("%A %d %B %Y")
+
+        return formatted_date
+    except ValueError:
+        return "Invalid date format"
     pass
 
 
-def convert_f_to_c(temp_in_farenheit):
-    """Converts an temperature from farenheit to celcius.
+def convert_f_to_c(temp_in_fahrenheit):
 
-    Args:
-        temp_in_farenheit: float representing a temperature.
-    Returns:
-        A float representing a temperature in degrees celcius, rounded to 1dp.
-    """
+    # """Converts an temperature from farenheit to celcius.
+    # Args:
+    #     temp_in_farenheit: float representing a temperature.
+    # Returns:
+    #     A float representing a temperature in degrees celcius, rounded to 1dp.
+    # """
+
+    temp_in_celsius = (float(temp_in_fahrenheit) - 32 )  * 5/9
+    temp_in_celsius1dp = round(temp_in_celsius, 1)
+
+    print(temp_in_celsius1dp)
+    return temp_in_celsius1dp
+
     pass
+convert_f_to_c(64.4)
+
+
 
 
 def calculate_mean(weather_data):
@@ -46,7 +66,9 @@ def calculate_mean(weather_data):
     Returns:
         A float representing the mean value.
     """
+    
     pass
+calculate_mean()
 
 
 def load_data_from_csv(csv_file):
@@ -57,6 +79,7 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
+    read_csv_file(csv_file)
     pass
 
 
