@@ -5,14 +5,14 @@ DEGREE_SYBMOL = u"\N{DEGREE SIGN}C"
 
 
 def format_temperature(temp):
-    """Takes a temperature and returns it in string format with the degrees
-        and celcius symbols.
+    # """Takes a temperature and returns it in string format with the degrees
+    #     and celcius symbols.
 
-    Args:
-        temp: A string representing a temperature.
-    Returns:
-        A string contain the temperature and "degrees celcius."
-    """
+    # Args:
+    #     temp: A string representing a temperature.
+    # Returns:
+    #     A string contain the temperature and "degrees celcius."
+    # """
     return f"{temp}{DEGREE_SYBMOL}"
 
 
@@ -53,22 +53,27 @@ def convert_f_to_c(temp_in_fahrenheit):
     return temp_in_celsius1dp
 
     pass
-convert_f_to_c(64.4)
+
 
 
 
 
 def calculate_mean(weather_data):
-    """Calculates the mean value from a list of numbers.
+    # """Calculates the mean value from a list of numbers.
 
-    Args:
-        weather_data: a list of numbers.
-    Returns:
-        A float representing the mean value.
-    """
+    # Args:
+    #     weather_data: a list of numbers.
+    # Returns:
+    #     A float representing the mean value.
+    # """
+
+    my_weather_data = [float(item) for item in weather_data]
     
+    mean_value = sum(my_weather_data) / len(my_weather_data)
+    return mean_value
     pass
-calculate_mean()
+
+
 
 
 def load_data_from_csv(csv_file):
@@ -79,7 +84,6 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
-    read_csv_file(csv_file)
     pass
 
 
