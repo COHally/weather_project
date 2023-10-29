@@ -49,7 +49,7 @@ def convert_f_to_c(temp_in_fahrenheit):
     temp_in_celsius = (float(temp_in_fahrenheit) - 32 )  * 5/9
     temp_in_celsius1dp = round(temp_in_celsius, 1)
 
-    print(temp_in_celsius1dp)
+    # print(temp_in_celsius1dp)
     return temp_in_celsius1dp
 
     pass
@@ -158,7 +158,54 @@ def generate_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+
+def generate_summary(weather_data):
+    """Outputs a summary for the given weather data.
+
+    Args:
+        weather_data: A list of lists, where each sublist represents a day of weather data.
+    Returns:
+        A string containing the summary information.
+    """
+
+    if not weather_data:
+        return ""
+
+    lowest_temp = float('inf')
+    lowest_temp_date = ""
+    highest_temp = float('-inf')
+    highest_temp_date = ""
+    total_low_temp = 0
+    total_high_temp = 0
+
+    for day in weather_data[:5]:
+        date_str, high_temp_fahrenheit, low_temp_fahrenheit = day
+        date_obj = datetime.fromisoformat(date_str)
+
+        # Convert temperatures from Fahrenheit to Celsius
+        high_temp = (high_temp_fahrenheit - 32) * 5/9
+        low_temp = (low_temp_fahrenheit - 32) * 5/9
+
+        if low_temp < lowest_temp:
+            lowest_temp = low_temp
+            lowest_temp_date = date_obj.strftime("%A %d %B %Y")
+        if high_temp > highest_temp:
+            highest_temp = high_temp
+            highest_temp_date = date_obj.strftime("%A %d %B %Y")
+
+        total_low_temp += low_temp
+        total_high_temp += high_temp
+
+    average_low_temp = total_low_temp / len(weather_data) #incorrect
+    average_high_temp = total_high_temp / len(weather_data) #incorrect
+
+    summary = f"{len(weather_data)} Day Overview\n"
+    summary += f"The lowest temperature will be {lowest_temp:.1f}°C, and will occur on {lowest_temp_date}.\n"
+    summary += f"The highest temperature will be {highest_temp:.1f}°C, and will occur on {highest_temp_date}.\n"
+    summary += f"The average low this week is {average_low_temp:.1f}°C.\n"
+    summary += f"The average high this week is {average_high_temp:.1f}°C."
+    print(summary)
+    return summary
 
 
 def generate_daily_summary(weather_data):
@@ -169,4 +216,6 @@ def generate_daily_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
+
+
     pass
