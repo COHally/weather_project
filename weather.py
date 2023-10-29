@@ -95,7 +95,6 @@ def load_data_from_csv(csv_file):
         my_list.append ([line[0], int(line[1]), int(line[2])])
     return my_list 
 
-   
     pass
 
 
@@ -114,7 +113,12 @@ def find_min(weather_data):
         return ()
 
     min_value = min(new_min_data)
-    min_index = new_min_data.index(min_value)
+
+    for i in range(len(new_min_data) - 1, -1, -1):
+        if new_min_data[i] == min_value:
+            min_index = i
+            break
+
 
     return min_value, min_index
 pass
@@ -136,8 +140,12 @@ def find_max(weather_data):
         return ()
 
     max_value = max(new_max_data)
-    max_index = new_max_data.index(max_value)
 
+    for i in range(len(new_max_data) - 1, -1, -1):
+        if new_max_data[i] == max_value:
+            max_index = i
+            break
+   
     return max_value, max_index
 pass
 
