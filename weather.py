@@ -84,7 +84,6 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
-
     reader = csv.reader(csv_file)
 
     next(reader)
@@ -92,9 +91,10 @@ def load_data_from_csv(csv_file):
     my_list = []
 
     for line in reader:
-        my_list.append ([line[0], int(line[1]), int(line[2])])
-    return my_list 
-
+        my_list.append (line)
+        print(line)
+        
+    return my_list
     pass
 
 
@@ -221,15 +221,17 @@ def generate_daily_summary(weather_data):
         formatted_date = date_obj.strftime("%A %d %B %Y")
 
         # Create a daily summary
-        daily_summary =  f"---- {formatted_date} ----\n"
+        daily_summary = f"---- {formatted_date} ----\n"
         daily_summary += f" Minimum Temperature: {low_temp:.1f}°C\n" 
         daily_summary += f" Maximum Temperature: {high_temp:.1f}°C\n"
-
+        
         # Append the daily summary to the list
         daily_summaries.append(daily_summary)
+
+    daily_summaries.append("")
 
     for summary in daily_summaries:
         print(summary)
 
-    return summary
+    return daily_summaries
     pass
