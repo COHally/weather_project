@@ -56,8 +56,6 @@ def convert_f_to_c(temp_in_fahrenheit):
 
 
 
-
-
 def calculate_mean(weather_data):
     # """Calculates the mean value from a list of numbers.
 
@@ -84,18 +82,21 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
-    reader = csv.reader(csv_file)
+# csv_files = ["tests\data\example_one.csv", "tests\data\example_three.csv", "tests\data\example_two.csv"]
 
-    next(reader)
-
-    my_list = []
-
-    for line in reader:
-        my_list.append (line)
-        print(line)
-        
-    return my_list
-    pass
+    with open(csv_file) as file:
+        reader = csv.reader(file)
+        next(reader)
+        data = [] 
+        for row in reader:
+            if len (row)==0:
+                continue
+            else:
+                data.append([f"{row[0]}", int(row [1]), int(row [2])])
+                
+            # print(data)  # Properly indented return statement within the function
+        return data
+pass
 
 
 def find_min(weather_data):
@@ -222,16 +223,18 @@ def generate_daily_summary(weather_data):
 
         # Create a daily summary
         daily_summary = f"---- {formatted_date} ----\n"
-        daily_summary += f" Minimum Temperature: {low_temp:.1f}°C\n" 
-        daily_summary += f" Maximum Temperature: {high_temp:.1f}°C\n"
+        daily_summary += f"  Minimum Temperature: {low_temp:.1f}°C\n"
+        daily_summary += f"  Maximum Temperature: {high_temp:.1f}°C\n\n"
+
         
         # Append the daily summary to the list
+    # for day in weather_data:
         daily_summaries.append(daily_summary)
 
     daily_summaries.append("")
 
-    for summary in daily_summaries:
-        print(summary)
+    # for summary in daily_summaries:
+    # print("".join(daily_summaries))
 
-    return daily_summaries
+    return ("".join(daily_summaries))
     pass
