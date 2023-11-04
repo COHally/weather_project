@@ -96,7 +96,7 @@ def load_data_from_csv(csv_file):
                 
             # print(data)  # Properly indented return statement within the function
         return data
-pass
+
 
 
 def find_min(weather_data):
@@ -122,7 +122,6 @@ def find_min(weather_data):
 
 
     return min_value, min_index
-pass
 
 
 
